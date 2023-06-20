@@ -1,0 +1,1 @@
+export const otpTimerSeconds = 59

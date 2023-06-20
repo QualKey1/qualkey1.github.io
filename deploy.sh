@@ -1,0 +1,1 @@
+git archive --format=zip HEAD:qk-processing/ > deploy.zip; eb deploy;

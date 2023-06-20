@@ -1,0 +1,17 @@
+@mixin breakpoint-max($bp) {
+  @media screen and (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin breakpoint-max-vertical($bp) {
+  @media screen and (max-height: $bp) {
+    @content;
+  }
+}
+
+@mixin print() {
+  @media print {
+    @content;
+  }
+}

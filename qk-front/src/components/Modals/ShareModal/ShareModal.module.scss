@@ -1,0 +1,20 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.selectionChoose {
+  margin-top: 3.2rem;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+  input[type="radio"] {
+    margin: 0;
+    overflow: initial;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+  }
+}

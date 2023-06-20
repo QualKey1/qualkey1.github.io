@@ -1,0 +1,7 @@
+export * from "./analyticsPage.type"
+export * from "./dashboardPage.type"
+export * from "./uuidPublicPage.type"
+export * from "./errorPage.type"
+export * from "./publicPage.type"
+export * from "./settingsPage.type"
+export * from "./sharedUuidPage.type"

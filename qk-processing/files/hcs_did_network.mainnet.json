@@ -1,0 +1,21 @@
+{
+  "identityNetwork": {
+    "network": "https://www.app.qualkey.org/",
+    "addressBook": "{\"appnetName\":\"Qualkey\",\"didTopicId\":\"0.0.1121538\",\"vcTopicId\":\"0.0.1121539\",\"appnetDidServers\":[\"https://www.app.qualkey.org/\"]}"
+  },
+  "fileIdShard": {
+    "low": 0,
+    "high": 0,
+    "unsigned": false
+  },
+  "fileIdRealm": {
+    "low": 0,
+    "high": 0,
+    "unsigned": false
+  },
+  "fileIdNum": {
+    "low": 1121540,
+    "high": 0,
+    "unsigned": false
+  }
+}

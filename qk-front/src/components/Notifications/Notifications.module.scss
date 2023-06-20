@@ -1,0 +1,52 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+$notifications-padding: 2.4rem;
+
+.notification {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  height: 32rem;
+  left: 50%;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: $notifications-padding 0;
+  position: absolute;
+  top: 4rem;
+  transform: translateX(-50%);
+  width: 42rem;
+  @include breakpoint-max($bp-screen-lg) {
+    width: 38rem;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    left: calc(-100vw + $width-avatar-inner-content-sm + 6rem);
+    transform: initial;
+    width: calc(100vw - $notifications-padding * 2);
+  }
+}
+
+.heading {
+  border-bottom: 1px solid $color-black-200;
+  padding: 0 $notifications-padding $notifications-padding;
+}
+
+.item {
+  align-items: center;
+  border-bottom: 1px solid $color-black-200;
+  cursor: pointer;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: space-between;
+  padding: $notifications-padding;
+  transition: background-color .2s ease-in-out;
+
+  &:hover {
+    background-color: $color-black-200;
+  }
+
+  svg {
+    @include breakpoint-max($bp-screen-xs) {
+      display: none;
+    }
+  }
+}

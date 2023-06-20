@@ -1,0 +1,29 @@
+@import "../utils/constants";
+@import "../utils/mixins";
+
+.pincode-input-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .pincode-input-text {
+    @include text-sub-display();
+    background-color: $color-black-100 !important;
+    border: 1px solid $color-brand-blue-v2-4 !important;
+    border-radius: 1.2rem !important;
+    caret-color: transparent !important;
+    font-family: inherit;
+    height: 8rem !important;
+    margin: 0 !important;
+    transition: background-color 0.2s ease-in-out;
+    width: 8rem !important;
+    @include breakpoint-max($bp-screen-sm) {
+      height: 6.4rem !important;
+      width: 6.4rem !important;
+    }
+  }
+
+  .pincode-input-text:focus {
+    background-color: $color-black-200 !important;
+  }
+}

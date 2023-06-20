@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  redis:
+    container_name: qk_redis
+    image: 'redis:alpine'
+    ports:
+      - 6379:6379
+    networks:
+      - qualkey
+
+  qk_front:
+    container_name: qk_front
+    build:
+      context: ./qk-front/
+    ports:
+      - 3000:3000
+    networks:
+      - qualkey
+    depends_on:
+      - qk_processing
+
+  qk_processing:
+    container_name: qk_processing
+    hostname: qk_processing
+    env_file:
+      - ./qk-processing/.env.local
+    ports:
+      - $PROCESSING_PORT:$PROCESSING_PORT
+      - 9229:9229
+    networks:
+      - qualkey
+    restart: always
+
+networks:
+  qualkey:

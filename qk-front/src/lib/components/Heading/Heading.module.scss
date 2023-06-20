@@ -1,0 +1,73 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.display {
+  @include text-display();
+}
+
+.subDisplay {
+  @include text-sub-display();
+}
+
+.lg {
+  @include text-heading-lg();
+}
+
+.md {
+  @include text-heading-md();
+}
+
+.sm {
+  @include text-heading-sm();
+}
+
+.c {
+
+  &_success {
+    color: $color-success;
+  }
+
+  &_danger {
+    color: $color-danger;
+  }
+
+  &_pending {
+    color: $color-pending;
+  }
+
+  &_blue {
+    color: $color-brand-blue-v2-4;
+  }
+
+  &_darkblue {
+    color: $color-brand-blue-v2-5;
+  }
+
+  &_000 {
+    color: $color-black-000;
+  }
+
+  &_100 {
+    color: $color-black-100;
+  }
+
+  &_200 {
+    color: $color-black-200;
+  }
+
+  &_300 {
+    color: $color-black-300;
+  }
+
+  &_400 {
+    color: $color-black-400;
+  }
+
+  &_500 {
+    color: $color-black-500;
+  }
+
+  &_800 {
+    color: $color-black-800;
+  }
+}

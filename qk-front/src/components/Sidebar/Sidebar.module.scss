@@ -1,0 +1,76 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+$padding-top-lg: calc(($topbar-height - $burger-height) / 2);
+
+.sidebar {
+  background-color: $color-brand-blue-v2-4;
+  border-radius: 0 2rem 2rem 0;
+  height: calc(100vh - 14.4rem);
+  padding: 4.8rem 0 9.6rem;
+  position: fixed;
+  transition: transform 0.2s ease-in-out;
+  width: $sidebar-width;
+  z-index: 2;
+  @include breakpoint-max($bp-screen-lg) {
+    height: calc(100vh - $padding-top-lg - 7.2rem);
+    padding-bottom: 7.2rem;
+    padding-top: $padding-top-lg;
+    transform: translateX(-100%);
+    &.active {
+      transform: translateX(0);
+    }
+  }
+  @include breakpoint-max-vertical($bp-vertical-md) {
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  @include print {
+    display: none;
+  }
+}
+
+.burgerWrapper {
+  display: none;
+  padding-bottom: $padding-top-lg - .2rem;
+  padding-left: $topbar-padding-x;
+  @include breakpoint-max($bp-screen-lg) {
+    display: block;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    padding-left: $topbar-padding-x-sm;
+  }
+
+  > div span {
+    background-color: $color-black-000;
+  }
+}
+
+.logoWrapper {
+  padding: 0 $sidebar-padding-x 4.8rem;
+  @include breakpoint-max($bp-screen-lg) {
+    display: none;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 14.4rem - 2.5rem); //100vh - (pt + pb) - (mb + 1px)
+  justify-content: space-between;
+  @include breakpoint-max($bp-screen-lg) {
+    height: calc(100% - $topbar-height - .2rem);
+  }
+}
+
+.hrWrapper {
+  margin-bottom: 2.4rem;
+  padding: 0 $sidebar-padding-x;
+
+  .hr {
+    border: 1px solid $color-black-200;
+    margin: 0 !important;
+    opacity: 10%;
+  }
+}

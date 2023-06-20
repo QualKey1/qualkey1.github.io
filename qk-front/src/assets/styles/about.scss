@@ -1,0 +1,91 @@
+@import "./utils/constants";
+@import "./utils/mixins";
+
+.about {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  box-shadow: $shadow-5;
+  margin-top: 4.8rem;
+  max-width: calc(1075px - 6.4rem);
+  padding: 3.2rem;
+
+  @include breakpoint-max($bp-screen-sm) {
+    margin-top: 2.4rem;
+  }
+
+  @include print {
+    box-shadow: none;
+    margin-bottom: 2.4rem;
+     button, svg {
+      display: none;
+    }
+  }
+
+  > span {
+    @include breakpoint-max($bp-screen-lg) {
+      display: none !important;
+    }
+  }
+
+  &__content {
+    display: flex;
+    gap: 2.4rem;
+    justify-content: space-between;
+    margin-top: 3.2rem;
+    @include breakpoint-max($bp-screen-xl) {
+      flex-direction: column;
+    }
+    > div {
+      flex: 1 1 0;
+    }
+  }
+
+  &__left {
+    margin-top: -10rem;
+    @include breakpoint-max($bp-screen-lg) {
+      margin-top: 0;
+    }
+    &--item {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      justify-content: center;
+      p {
+        text-align: center;
+      }
+    }
+    &--image {
+      border-radius: 50%;
+    }
+  }
+
+  &__wrapper {
+    align-items: center;
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    @include breakpoint-max($bp-screen-sm) {
+      grid-template-columns: initial;
+      grid-template-rows: 1fr 1fr;
+    }
+  }
+}
+
+.readmore {
+  &__top {
+    align-items: center;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-bottom: 2.4rem;
+    @include breakpoint-max($bp-screen-sm) {
+      flex-direction: column;
+    }
+    + p {
+      margin-bottom: 3.2rem;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import "./utils/constants";
+@import "./utils/mixins";
+
+.auth {
+  &__remember {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @include breakpoint-max($bp-screen-lg) {
+      justify-content: center;
+    }
+    > label {
+      @include breakpoint-max($bp-screen-lg) {
+        display: none;
+      }
+    }
+  }
+
+  &__terms {
+    align-items: flex-start;
+    bottom: 2.6rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.6rem;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: calc(100% - 19.2rem);
+    @include breakpoint-max($bp-screen-lg) {
+      align-items: center;
+      margin-top: 9.4rem;
+      position: initial;
+      transform: initial;
+      width: initial;
+    }
+    > p,
+    > a {
+      @include breakpoint-max($bp-screen-lg) {
+        text-align: center;
+      }
+    }
+    > p {
+      > span {
+        color: $color-brand-blue-v2-5;
+      }
+    }
+  }
+}

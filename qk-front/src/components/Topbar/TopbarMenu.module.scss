@@ -1,0 +1,23 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.menu {
+  background-color: $color-black-000;
+  border-radius: 0 0 1.2rem 1.2rem;
+  border-top: 1px solid $color-black-300;
+  left: 0;
+  position: absolute;
+  top: 6rem;
+  width: 27.2rem;
+  @include breakpoint-max($bp-screen-lg) {
+    left: calc(-100vw + $width-avatar-inner-content);
+    width: 100vw;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    left: calc(-100vw + $width-avatar-inner-content-sm);
+  }
+  > a:last-child div,
+  > div:last-child {
+    border-radius: 0 0 1.2rem 1.2rem;
+  }
+}

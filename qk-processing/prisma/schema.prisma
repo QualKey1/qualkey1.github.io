@@ -1,0 +1,327 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["extendedIndexes"]
+  binaryTargets = ["native", "darwin", "darwin", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+    SUPER_ADMIN
+    ADMIN
+    INSTITUTION_REPRESENTATIVE
+    STUDENT
+}
+
+enum UserStatus {
+    ACTIVE
+    CLOSED
+    BANNED
+    DELETED
+}
+
+model User {
+    uuid                String @id @default(uuid())
+    email               String @unique
+    password            String @default(cuid())
+    role                Role
+    status              UserStatus @default(ACTIVE)
+    createdAt           DateTime @default(now())
+    updatedAt           DateTime @updatedAt
+    lastLoginAt         DateTime?
+    fullName            String?
+    currency            String @default("GBP")
+    stripeCustomerId    String? @unique
+    signatureUrl        String?
+    title               String?
+    credentials         Credential[]
+    payments            Payment[]
+    institution         Institution? @relation(fields: [institutionUuid], references: [uuid])
+    institutionUuid     String?
+    subscribedToEmails  Boolean @default(true)
+
+    @@map("users")
+}
+
+enum CredentialStatus {
+    NEW
+    UPLOADING_TO_BLOCKCHAIN
+    FAILED_UPLOADING_TO_BLOCKCHAIN
+    UPLOADED_TO_BLOCKCHAIN
+    ACTIVATED
+    WITHDRAWN
+    EXPIRED
+    DELETED
+}
+
+model Credential {
+    uuid                String @id @default(uuid())
+    status              CredentialStatus @default(NEW)
+    student             User @relation(fields: [studentUuid], references: [uuid])
+    studentUuid         String
+    institution         Institution @relation(fields: [institutionUuid], references: [uuid])
+    institutionUuid     String
+    upload              Upload @relation(fields: [uploadUuid], references: [uuid])
+    uploadUuid          String
+    did                 String? @unique
+
+    certificateId       String @default("")
+    graduatedName       String @default("")
+    qualificationName   String @default("")
+    majors              String @default("")
+    minors              String @default("")
+    awardingInstitution String @default("")
+    qualificationLevel  String @default("")
+    awardLevel          String @default("")
+    studyLanguage       String @default("")
+    info                String @default("")
+    gpaFinalGrade       String @default("")
+
+    studyStartedAt      DateTime?
+    studyEndedAt        DateTime?
+    graduatedAt         DateTime?
+    expiresAt           DateTime?
+
+    authenticatedAt     DateTime?
+    authenticatedBy     String @default("") //User name
+    authenticatedTitle  String @default("")
+
+    credentialChanges   CredentialChange[]
+
+    createdAt           DateTime @default(now())
+    updatedAt           DateTime @updatedAt
+
+    @@map("credentials")
+}
+
+enum InsitutionStatus {
+    ACTIVE
+    CLOSED
+}
+
+model Institution {
+    uuid                    String @id @default(uuid())
+    status                  InsitutionStatus @default(ACTIVE)
+    emailDomain             String @unique
+    logoUrl                 String?
+    stampUrl                String?
+    name                    String
+    createdAt               DateTime @default(now())
+    updatedAt               DateTime @updatedAt
+    credentials             Credential[]
+    representatives         User[]
+    mapping                 Json? // array with mapping of the fields and with original values of upload file's column names
+
+    @@map("institutions")
+}
+
+enum UploadStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+model Upload {
+    uuid                        String @id @default(uuid())
+    filename                    String
+    originalFilename            String
+    mapping                     String // array with mapping of the fields
+    status                      UploadStatus @default(PENDING)
+    uploadedBy                  String // User uuid
+    confirmationsRequestedFrom  String[] // array with user_uuids
+    confirmedBy                 String[] // array with user_uuids
+    createdAt                   DateTime @default(now())
+    updatedAt                   DateTime @updatedAt
+    credentials                 Credential[]
+
+    @@map("uploads")
+}
+
+model CredentialShare {
+    uuid                            String @id @default(uuid())
+    sharedBy                        String // uuid of the user which shared
+    recipientEmails                 String[] // array with recepient emails
+    credentialUuids                 String[] // array with credential uuids
+    credentialQualificationNames    String[] // array with credential qualification names
+    sharedFields                    String[] // array with field names allowed for sharing  full_name;majors;qualification_level
+    temporaryPassword               String
+    expiresAt                       DateTime
+    createdAt                       DateTime @default(now())
+
+    @@map("credentialShares")
+}
+
+model CredentialChange {
+    id                          Int @id @default(autoincrement())
+    credential                  Credential @relation(fields: [credentialUuid], references: [uuid])
+    credentialUuid              String
+    credentialDid               String
+    changedByUuid               String? // User uuid
+    changedFrom                 String[] // array with changes from   1;Peter;Dinklage
+    changedTo                   String[] // array with changes to     2;fyodor;Pupkin
+    fieldName                   String[] // array with field names    id;first_name;last_name
+    createdAt                   DateTime @default(now())
+    hash                        String @unique
+    transactionId               String? // TransactionId in HEDERA
+    transactionHash             String? // TransactionHash in HEDERA
+    smartContractId             String?
+
+    @@map("credentialChanges")
+}
+
+enum CredentialChangeRequestStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+model CredentialChangeRequest {
+    uuid                        String @id @default(uuid())
+    credentialUuid              String @unique
+    status                      CredentialChangeRequestStatus @default(PENDING)
+    requestedBy                 String // User uuid
+    confirmationRequestedFrom   String[] // array with user_uuids
+    confirmedBy                 String? // User uuid
+    changeFrom                  String[] // array with changes from   1;Peter;Dinklage
+    changeTo                    String[] // array with changes to     2;fyodor;Pupkin
+    fieldName                   String[] // array with field names    id;first_name;last_name
+    createdAt                   DateTime @default(now())
+    updatedAt                   DateTime @updatedAt
+
+    @@map("credentialChangeRequests")
+}
+
+model Transaction {
+    id                          Int @id @default(autoincrement())
+    credentialUuid              String?
+    fee                         String?
+    transactionId               String?
+    transactionHash             String? @unique
+    type                        String?
+    smartContract               SmartContract? @relation(fields: [smartContractId], references: [id])
+    smartContractId             String?
+
+    createdAt                   DateTime @default(now())
+
+    @@map("transactions")
+}
+
+enum UserActionType {
+    REVIEW_UPLOAD
+    REVIEW_WITHDRAWAL
+    REVIEW_CHANGE_REQUEST
+}
+
+enum UserActionStatus {
+    ACTIVE
+    DECISION_MADE
+}
+
+model UserActions {
+    id              Int     @id @default(autoincrement())
+    status          UserActionStatus @default(ACTIVE)
+    userUuid        String
+    initiatorName   String
+    type            UserActionType
+    subjectUuid     String
+    credentialsUuid String?
+    createdAt       DateTime @default(now())
+
+    @@map("userActions")
+}
+
+enum CredentialsWithdrawalRequestStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+model CredentialsWithdrawalRequest {
+    uuid                        String @id @default(uuid())
+    credentialsUuid             String @unique
+    status                      CredentialsWithdrawalRequestStatus @default(PENDING)
+    initiatedBy                 String // User uuid
+    confirmationsRequestedFrom  String[] // array with user_uuids
+    confirmedBy                 String[] // array with user_uuids
+    createdAt                   DateTime @default(now())
+    updatedAt                   DateTime @updatedAt
+
+    @@map("credentialsWithdrawalRequests")
+}
+
+model OneTimePassword {
+    uuid            String @id @default(uuid())
+    code            String
+    validUntil      DateTime
+    canBeResentAt   DateTime
+
+    @@map("oneTimePasswords")
+}
+
+enum SmartContractStatus {
+    ACTIVE
+    STORAGE_EXCEEDED
+}
+
+model SmartContract {
+    id              String @id @unique
+    status          SmartContractStatus @default(ACTIVE)
+    deployedAt      DateTime @default(now())
+    transactions    Transaction[]
+
+    @@map("smartContracts")
+}
+
+model SystemSettings {
+    id              Int @id @default(autoincrement())
+    name            String @unique
+    value           String
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+
+    @@map("systemSettings")
+}
+
+enum PaymentStatus {
+    PENDING
+    COMPLETED
+    FAILED
+}
+
+model Payment {
+    uuid                    String @id @default(uuid())
+    externalId              String @unique
+    student                 User @relation(fields: [studentUuid], references: [uuid])
+    studentUuid             String
+    status                  PaymentStatus @default(PENDING)
+    amount                  Decimal  @db.Decimal(10, 2)    @default(0.00)
+    currency                String
+    method                  String
+    createdAt               DateTime @default(now())
+    credentialUuids         String[]
+
+    @@map("payments")
+}
+
+model InstitutionStats {
+    id                          Int @id @default(autoincrement())
+    institutionUuid             String @unique
+    totalQualifications         Int @default(0)
+    withdrawnQualifications     Int @default(0)
+    editedQualifications        Int @default(0)
+    sharedQualifications        Int @default(0)
+    deletedQualifications       Int @default(0)
+    activatedQualifications     Int @default(0)
+    qualificationNames          String[]
+
+    createdAt                   DateTime @default(now())
+    updatedAt                   DateTime @updatedAt
+
+    @@map("institutionStats")
+}

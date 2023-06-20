@@ -1,0 +1,17 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.item {
+  align-items: center;
+  border-bottom: 1px solid $color-black-300;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem 0;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  gap: 1.6rem;
+  justify-content: center;
+}

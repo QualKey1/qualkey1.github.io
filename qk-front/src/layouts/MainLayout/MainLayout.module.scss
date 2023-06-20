@@ -1,0 +1,17 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.container {
+  padding: calc($topbar-height + 4.8rem) 4.8rem 2.4rem calc($sidebar-width + 4.8rem);
+  @include breakpoint-max($bp-screen-lg) {
+    padding-left: 6.4rem;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    padding-top: calc($topbar-height + 3.2rem);
+  }
+  @include print {
+    padding: 2.4rem 2.4rem 0;
+  }
+}

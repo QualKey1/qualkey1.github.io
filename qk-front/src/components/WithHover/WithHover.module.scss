@@ -1,0 +1,36 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    .label {
+      display: block;
+    }
+  }
+}
+
+.label {
+  background-color: $color-brand-blue-v2-4;
+  border-radius: 1.2rem;
+  bottom: calc(100% + 1.2rem);
+  display: none;
+  min-width: 22ch;
+  padding: 1.2rem;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  transition: opacity .2s ease-in-out;
+  z-index: 9;
+
+  &.center {
+    left: 50%;
+    right: initial;
+    transform: translateX(-50%);
+  }
+}
+
+.labelWrapper {
+  position: relative;
+}

@@ -1,0 +1,28 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+
+}
+
+.titles {
+  margin-bottom: .4rem;
+  padding: 0 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.form {
+  padding: 2.4rem;
+  border-radius: 1.2rem;
+  border: 1px solid $color-black-300;
+
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}

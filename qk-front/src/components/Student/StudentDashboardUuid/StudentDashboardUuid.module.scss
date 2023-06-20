@@ -1,0 +1,134 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+$uniLogoW: 196px;
+$uniLogoH: 64px;
+
+.wrapper {
+  margin-top: 6.4rem;
+  max-width: $dashboard-page-max-width;
+}
+
+.logoWrapper {
+  height: calc(100% - 5rem);
+  align-self: center;
+  position: relative;
+  padding: calc(2.4rem + .1rem) 0;
+  @include breakpoint-max($bp-screen-sm) {
+    display: none;
+  }
+}
+
+.uniLogo {
+  border: 1px solid $color-black-200;
+  border-radius: 1.2rem;
+  height: calc($uniLogoH - 1.6rem);
+  padding: .8rem 2.4rem;
+  max-width: calc($uniLogoW - 4.8rem);
+
+  > p {
+    &:last-child {
+      @include qualificationTitles();
+    }
+  }
+
+  &__wrapper {
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.qualification {
+  padding: 0 2.4rem;
+  border-radius: 1.5rem;
+  background-color: $color-black-000;
+  display: grid;
+  grid-template-columns: .6fr 1fr .5fr .5fr;
+  gap: 1.6rem;
+
+  @include breakpoint-max($bp-screen-lg) {
+    grid-template-columns: .8fr 1fr .2fr .2fr;
+    > div:nth-child(3) {
+      grid-template-columns: 1fr;
+      p:not(:last-child) {
+        display: none;
+      }
+    }
+  }
+
+  @include breakpoint-max($bp-screen-md) {
+    gap: 1.2rem;
+    padding: 0 1.2rem;
+    > div:nth-child(2) {
+      grid-template-columns: 1fr;
+      svg {
+        display: none;
+      }
+    }
+  }
+
+  @include breakpoint-max($bp-screen-sm) {
+    grid-template-columns: 1fr .5fr .5fr;
+  }
+
+  + div {
+    display: none;
+    @include breakpoint-max($bp-screen-sm) {
+      display: block;
+    }
+    button {
+      display: none;
+      @include breakpoint-max($bp-screen-sm) {
+        display: flex;
+      }
+    }
+  }
+}
+
+.item {
+  padding: 2.4rem 0;
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  align-items: center;
+  gap: .8rem;
+  position: relative;
+  > p {
+    &:last-child {
+      @include qualificationTitles();
+    }
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    p:not(:last-child) {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.actions {
+  position: relative;
+  padding: 1.2rem 0 1.2rem 2.4rem;
+  border-left: 1px solid $color-black-200;
+  display: flex;
+  align-items: center;
+
+  >p:last-child {
+    @include qualificationTitles();
+    left: 2.4rem;
+  }
+
+  > div {
+    @include breakpoint-max($bp-screen-lg) {
+      width: 9rem !important;
+    }
+    button {
+      margin-top: 0;
+      @include breakpoint-max($bp-screen-lg) {
+        grid-template-columns: 1fr !important;
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}

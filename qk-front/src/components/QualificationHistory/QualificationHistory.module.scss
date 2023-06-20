@@ -1,0 +1,62 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.history {
+  background-color: $color-black-000;
+  border-radius: 0 0 1.5rem 1.5rem;
+  border-top: 1px solid $color-black-200;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+
+  &.active {
+    display: grid;
+  }
+
+  &.isStudent {
+    &.active {
+      @include breakpoint-max($bp-screen-md) {
+        display: flex;
+        flex-direction: column;
+
+        .logs {
+          padding: 1.2rem 2.4rem;
+
+          > div {
+            padding: .8rem .8rem;
+
+            svg {
+              transform: rotate(90deg);
+            }
+          }
+        }
+
+        .details {
+          padding-top: 0;
+        }
+      }
+      @include breakpoint-max($bp-screen-sm) {
+        .logs, .details {
+          p {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logs {
+  padding: 2.4rem;
+}
+
+.details {
+  border-left: 1px solid $color-black-200;
+  padding: 2.4rem;
+}
+
+.logs,
+.details {
+  > h4 {
+    margin-bottom: 2.4rem;
+  }
+}

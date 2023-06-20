@@ -1,0 +1,52 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 6rem;
+  height: 3.4rem;
+
+  input {
+    display: none;
+
+    &:checked {
+      + .slider {
+        background-color: $color-brand-blue-v2-4;
+        &:before {
+          -ms-transform: translateX(2.6rem);
+          transform: translateX(2.6rem);
+        }
+      }
+    }
+    &:focus + .slider {
+      box-shadow: 0 0 1px $color-brand-blue-v2-4;
+    }
+  }
+}
+
+.slider {
+  border-radius: 1.6rem;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-black-300;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 2.6rem;
+    width: 2.6rem;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background-color: $color-black-000;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+}

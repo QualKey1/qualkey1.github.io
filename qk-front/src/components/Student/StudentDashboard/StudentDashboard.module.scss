@@ -1,0 +1,19 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.dashboard {
+  max-width: $dashboard-page-max-width;
+  margin-top: 4.8rem;
+
+  @include breakpoint-max($bp-screen-sm) {
+    margin-top: 2.4rem;
+  }
+
+  @include print {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.qualification {
+  margin-top:5.4rem;
+}

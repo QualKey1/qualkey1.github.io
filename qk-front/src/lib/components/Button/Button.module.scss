@@ -1,0 +1,139 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  position: relative;
+}
+
+.textWrapper {
+  position: absolute;
+  bottom: -3rem;
+  left: 0;
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  gap: .4rem;
+}
+
+.button {
+  white-space: nowrap;
+  margin-top: 3.2rem;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 1.2rem;
+  color: $color-black-000;
+  display: grid;
+  font-family: inherit;
+  gap: 1.2rem;
+  justify-content: center;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+
+  &:disabled {
+    background-color: $color-black-300;
+    border: none;
+    color: $color-black-000;
+    svg {
+      path {
+        stroke: $color-black-000
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $color-black-300;
+      border: none;
+      color: $color-black-000;
+    }
+  }
+
+  > span {
+    @include text-paragraph();
+    font-weight: 600;
+  }
+
+  &.center {
+    margin: 3.2rem auto 0;
+  }
+
+  &.icon {
+    grid-template-columns: .2fr 1fr;
+  }
+
+  &.loading {
+    grid-template-columns: none;
+    height: fit-content;
+  }
+}
+
+.fullWidth {
+  display: flex;
+  width: 100%;
+}
+
+.loading {
+  height: 1.5em;
+}
+
+.lg {
+  padding: 1.2rem 3.2rem;
+}
+
+.md {
+  padding: .8rem 3.2rem;
+}
+
+.sm {
+  padding: .8rem 1.6rem;
+}
+
+.xs {
+  padding: .4rem 1.6rem;
+}
+
+.primary {
+  background-color: $color-brand-blue-v2-4;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color-brand-blue-v2-4, 5%);
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  border: 1px solid $color-brand-blue-v2-4;
+  color: $color-brand-blue-v2-4;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color-black-000, 5%);
+  }
+}
+
+.danger {
+  background-color: $color-danger;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color-danger, 5%);
+  }
+}
+
+.filter {
+  background-color: transparent;
+  border: 1px solid $color-brand-blue-v2-4;
+  color: $color-brand-blue-v2-4;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: $color-black-000;
+    background-color: $color-brand-blue-v2-4;
+  }
+}
+
+.thin {
+  span {
+    font-weight: 400;
+  }
+}

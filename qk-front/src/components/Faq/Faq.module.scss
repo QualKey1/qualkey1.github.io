@@ -1,0 +1,61 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.faq {
+  margin-top: 4.8rem;
+  max-width: $public-pages-max-width;
+
+  @include breakpoint-max($bp-screen-sm) {
+    margin-top: 2.4rem;
+  }
+
+  @include print {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.top {
+  align-items: center;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: space-between;
+  margin-bottom: 3.2rem;
+  @include breakpoint-max($bp-screen-sm) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  @include print {
+    display: none;
+  }
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  gap: .8rem;
+  overflow: hidden;
+  overflow-x: scroll;
+  @include breakpoint-max($bp-screen-sm) {
+    width: 100%;
+  }
+
+  button {
+    margin-top: 0;
+  }
+}
+
+.expand {
+  align-items: center;
+  border-left: 1px solid $color-black-300;
+  display: flex;
+  gap: 1.6rem;
+  padding-left: 1.6rem;
+  @include breakpoint-max($bp-screen-sm) {
+    align-self: flex-end;
+  }
+}
+
+.content {
+
+}

@@ -1,0 +1,36 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+.item {
+  border: 1px solid $color-brand-blue-v2-4;
+  border-radius: 50%;
+  height: 2.2rem;
+  position: relative;
+  width: 2.2rem;
+
+  &::after {
+    border-bottom: solid 1px $color-brand-blue-v2-4;
+    content: "";
+    left: 2.2rem;
+    position: absolute;
+    top: 50%;
+    width: 2.6rem;
+    z-index: 1;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  &.active {
+    background-color: $color-brand-blue-v2-4;
+  }
+}

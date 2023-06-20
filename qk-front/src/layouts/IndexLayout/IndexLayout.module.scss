@@ -1,0 +1,76 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+  @include breakpoint-max($bp-screen-lg) {
+    background-color: $color-black-000;
+    display: block;
+  }
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  max-width: 1216px;
+  padding: 0 .4rem;
+  @include breakpoint-max($bp-screen-lg) {
+    flex-direction: column-reverse;
+    padding: 0;
+  }
+}
+
+.content {
+  background-color: $color-black-000;
+  max-width: 608px;
+  padding: 9.6rem 9.6rem 2.6rem;
+  position: relative;
+  width: 50%;
+  @include breakpoint-max($bp-screen-lg) {
+    max-width: initial;
+    padding-top: 3.2rem;
+    width: calc(100vw - 19.2rem);
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    padding: 3.2rem 2.4rem;
+    width: calc(100vw - 4.8rem);
+  }
+  &__wrapper {
+    @include breakpoint-max($bp-screen-lg) {
+      margin: 0 auto;
+      width: 80%;
+    }
+    @include breakpoint-max($bp-screen-sm) {
+      width: 100%;
+    }
+  }
+}
+
+.logo {
+  align-items: center;
+  background-color: $color-brand-blue-v2-4;
+  display: flex;
+  flex-direction: column;
+  gap: 9.6rem;
+  justify-content: center;
+  max-width: 608px;
+  padding: 9.6rem;
+  width: 50%;
+  @include breakpoint-max($bp-screen-lg) {
+    gap: 1.6rem;
+    max-width: initial;
+    padding: 3.2rem;
+    width: calc(100vw - 6.4rem);
+  }
+  > h1 {
+    text-align: center;
+    @include breakpoint-max($bp-screen-sm) {
+      display: none;
+    }
+  }
+}

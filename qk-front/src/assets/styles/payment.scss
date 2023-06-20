@@ -1,0 +1,74 @@
+@import "./utils/constants";
+@import "./utils/mixins";
+
+.payment {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: 0 4.8rem;
+  width: calc(100vw - 9.6rem);
+  @include breakpoint-max($bp-screen-md) {
+    height: initial;
+    margin-top: 7.2rem;
+    padding-bottom: 2.4rem;
+    padding-top: 6.4rem;
+  }
+
+  > svg {
+    margin-bottom: 2.4rem;
+  }
+
+  &__top {
+    align-items: center;
+    background-color: $color-black-000;
+    display: flex;
+    height: 7.2rem;
+    left: 0;
+    padding: 0 5.2rem;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 10.4rem);
+  }
+
+  &__content {
+    overflow-y: scroll;
+  }
+
+  &__back {
+    margin-top: 15vh;
+  }
+
+  &__or {
+    margin-top: 1.2rem;
+
+    > p {
+      margin: 0 auto;
+      max-width: 10ch;
+      position: relative;
+      &:before {
+        background-color: $color-black-400;
+        content: "";
+        display: block;
+        height: .1rem;
+        left: -3ch;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4rem;
+      }
+      &:after {
+        background-color: $color-black-400;
+        content: "";
+        display: block;
+        height: .1rem;
+        position: absolute;
+        right: -3ch;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4rem;
+      }
+    }
+  }
+}

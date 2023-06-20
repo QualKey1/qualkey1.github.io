@@ -1,0 +1,83 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  @include print() {
+    display: none;
+  }
+
+  &.isStudent {
+    flex-direction: row-reverse;
+    button {
+      margin-top: 0;
+      padding: 1rem 2.2rem;
+    }
+
+    @include breakpoint-max($bp-screen-sm) {
+      flex-direction: column;
+
+      div.search {
+        width: 100%;
+        div {
+          width: 100%;
+          input {
+            width: calc(100% - 4.4rem);
+          }
+        }
+      }
+    }
+
+  }
+
+  > p > span {
+    color: $color-black-800;
+  }
+}
+
+.search {
+  align-self: flex-end;
+  display: flex;
+  gap: 1.2rem;
+
+  > form {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    > div {
+      > input {
+        background-color: $color-black-300;
+        border: 1px solid $color-black-500;
+        margin-bottom: 0;
+        padding: 1.2rem 2.2rem;
+      }
+      button {
+        margin-top: 0;
+        padding: 1.2rem 2.2rem;
+        &:not(:last-child) {
+          background-color: $color-black-300;
+          border: 1px solid $color-black-500;
+          width: 12.5rem;
+          + ul {
+            background-color: $color-black-300;
+          }
+        }
+        &:last-child {
+          margin-top: 0;
+          padding: 1.1rem 2.2rem;
+        }
+      }
+    }
+  }
+
+  > div:last-child {
+    button {
+      margin-top: 0;
+      padding: 1.1rem 2.2rem;
+    }
+  }
+}

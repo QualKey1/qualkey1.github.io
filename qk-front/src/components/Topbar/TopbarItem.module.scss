@@ -1,0 +1,21 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.item {
+  padding: 1.2rem 0 1.2rem 2.4rem;
+  transition: background-color .2s ease-in-out;
+  &:hover,
+  &.active {
+    background-color: $color-black-300;
+  }
+}
+
+.itemInner {
+  align-items: center;
+  display: flex;
+  gap: .8rem;
+}
+
+a:focus .item {
+  background-color: $color-black-300;
+}

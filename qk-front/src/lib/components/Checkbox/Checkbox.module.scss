@@ -1,0 +1,101 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.label {
+  @include text-label();
+  cursor: pointer;
+  display: block;
+  padding-left: 2.6rem;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  > input {
+    cursor: pointer;
+    display: none;
+    height: 0;
+    position: absolute;
+    width: 0;
+    &:checked ~ .checkmark {
+      background-color: $color-brand-blue-v2-4;
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  .checkmark:after {
+    border: solid white;
+    border-width: 0 .2rem .2rem 0;
+    height: .9rem;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: .4rem;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    > span {
+      background-color: $color-black-200;
+      border: 1px solid $color-black-300;
+    }
+  }
+}
+
+.checkmark {
+  background-color: transparent;
+  border: 1px solid $color-brand-blue-v2-4;
+  border-radius: .4rem;
+  height: 1.6rem;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease-in-out;
+  width: 1.6rem;
+  &:after {
+    content: "";
+    display: none;
+    position: absolute;
+  }
+  &:focus,
+  &:hover {
+    background-color: $color-black-300;
+  }
+}
+
+.c {
+  &_blue {
+    color: $color-brand-blue-v2-4;
+  }
+
+  &_darkblue {
+    color: $color-brand-blue-v2-5;
+  }
+
+  &_100 {
+    color: $color-black-100;
+  }
+
+  &_200 {
+    color: $color-black-200;
+  }
+
+  &_300 {
+    color: $color-black-300;
+  }
+
+  &_400 {
+    color: $color-black-400;
+  }
+
+  &_500 {
+    color: $color-black-500;
+  }
+
+  &_800 {
+    color: $color-black-800;
+  }
+}

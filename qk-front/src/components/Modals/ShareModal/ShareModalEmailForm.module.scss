@@ -1,0 +1,56 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.mail {
+  border-radius: 1.2rem;
+  border: 1px solid $color-black-300;
+  padding: 3.2rem;
+  @include breakpoint-max($bp-screen-sm) {
+    padding: 1.2rem;
+  }
+}
+
+.dear {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  > div input {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    margin-bottom: 0;
+  }
+}
+
+.button {
+  margin: 1.6rem 0;
+  width: fit-content;
+  padding: 1.2rem 3.2rem;
+  background-color: $color-black-300;
+  border-radius: 1.2rem;
+  > p {
+    color: $color-black-000;
+  }
+}
+
+.adjust {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3.2rem;
+  > div button {
+    margin-top: 0;
+  }
+}
+
+.expires {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  button {
+    width: 15rem;
+  }
+  ul {
+    height: 15rem;
+  }
+}

@@ -1,0 +1,30 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.textWrapper {
+  cursor: pointer;
+  display: flex;
+  height: 6.4rem;
+  padding-left: 3.2rem;
+  transition: background-color .2s ease-in-out;
+
+  &.secondary {
+    height: 4.8rem;
+  }
+
+  &.active,
+  &:hover {
+    background-color: $color-brand-blue-v2-5;
+  }
+}
+
+a:focus .textWrapper {
+  background-color: $color-brand-blue-v2-5;
+}
+
+.textInner {
+  align-items: center;
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: .2fr 1fr;
+}

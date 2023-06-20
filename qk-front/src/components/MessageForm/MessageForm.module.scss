@@ -1,0 +1,84 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.message {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  display: grid;
+  grid-template-columns: .4fr 1fr;
+  margin-top: 4.8rem;
+  max-width: $public-pages-max-width;
+  @include breakpoint-max($bp-screen-md) {
+    display: block;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    margin-top: 2.4rem;
+  }
+}
+
+.contact {
+  background-color: $color-black-100;
+  border-radius: 1.2rem;
+  max-width: calc(345px - 6.4rem);
+  padding: 3.2rem;
+  @include breakpoint-max($bp-screen-md) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: initial;
+    padding: 1.2rem 0;
+    width: 100%;
+  }
+
+  > p {
+    margin-bottom: 3.6rem;
+    @include breakpoint-max($bp-screen-md) {
+      display: none;
+    }
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+  justify-content: center;
+  @include breakpoint-max($bp-screen-md) {
+    flex-direction: row;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    gap: 1.2rem;
+  }
+}
+
+.infoItem {
+  a {
+    align-items: center;
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: .1fr 1fr;
+    justify-content: center;
+    @include breakpoint-max($bp-screen-md) {
+      display: block;
+    }
+
+    > p {
+      @include breakpoint-max($bp-screen-md) {
+        display: none;
+      }
+    }
+  }
+}
+
+.send {
+  max-width: calc(600px - 6.4rem);
+  padding: 3.2rem 3.2rem 4.6rem;
+
+  > p {
+    margin-bottom: 3.6rem;
+  }
+
+  .wrapper {
+    max-width: 28rem;
+  }
+}

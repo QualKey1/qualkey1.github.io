@@ -1,0 +1,96 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  margin-top: 4.8rem;
+  max-width: 1440px;
+}
+
+.filter {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: flex-end;
+  margin-bottom: 2.4rem;
+
+  > div:not(:last-child) {
+    button {
+      background-color: $color-black-300;
+      border: 1px solid $color-black-500;
+      margin-top: 0;
+      padding: 1.2rem 2.2rem;
+      width: 12.5rem;
+
+      + ul {
+        background-color: $color-black-300;
+      }
+    }
+    &:nth-child(5) {
+      button {
+        width: 32rem;
+      }
+    }
+  }
+  > div:last-child {
+    button {
+      margin-top: 0;
+    }
+  }
+}
+
+.data {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  padding: 3.2rem;
+}
+
+.dataWrapper {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  justify-content: space-between;
+  margin-top: 3.2rem;
+}
+
+.dataItem {
+  > div {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+
+    > p {
+      max-width: 14ch;
+    }
+  }
+}
+
+.chart {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+  margin-top: 1.6rem;
+  width: 100%;
+}
+
+.chartItem {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  padding: 2.4rem;
+
+  > p {
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+}
+
+.productivity {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  padding: 3.2rem;
+}

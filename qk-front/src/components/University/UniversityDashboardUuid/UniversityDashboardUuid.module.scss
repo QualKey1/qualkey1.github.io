@@ -1,0 +1,79 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  margin-top: 6.4rem;
+  max-width: $dashboard-page-max-width;
+}
+
+.qualification {
+  padding: 0 2.4rem;
+  border-radius: 1.5rem;
+  background-color: $color-black-000;
+  display: grid;
+  grid-template-columns: 1fr 1fr .5fr .5fr .2fr;
+  gap: 1.6rem;
+}
+
+.item {
+  padding: 2.4rem 0;
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  align-items: center;
+  gap: .8rem;
+  position: relative;
+
+  > p {
+    &:last-child {
+      @include qualificationTitles();
+    }
+  }
+}
+
+.date {
+  height: calc(100% - 4.8rem);
+  align-self: center;
+  padding: 2.4rem 0;
+  position: relative;
+  justify-self: center;
+  display: grid;
+  > p:first-child {
+    max-width: 10ch;
+    text-align: center;
+    align-self: center;
+  }
+  > p:last-child {
+    min-width: 12ch;
+    @include qualificationTitles();
+  }
+}
+
+.actions {
+  position: relative;
+  padding: 1.2rem 0 1.2rem 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-left: 1px solid $color-black-200;
+  align-items: center;
+  gap: 2.4rem;
+
+  svg {
+    cursor: pointer;
+  }
+
+  > p:last-child {
+    @include qualificationTitles();
+  }
+
+  &.disabled {
+    > div:first-child {
+      svg {
+        pointer-events: none;
+        path {
+          stroke: $color-black-200;
+        }
+      }
+    }
+  }
+}
+

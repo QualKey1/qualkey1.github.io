@@ -1,0 +1,129 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+$uniLogoW: 108px;
+$uniLogoH: 30px;
+
+.topbar {
+  align-items: center;
+  background-color: $color-black-000;
+  box-shadow: $shadow-15;
+  display: flex;
+  height: calc($topbar-height - 2.4rem);
+  justify-content: space-between;
+  padding: $topbar-padding-y $topbar-padding-x $topbar-padding-y calc($sidebar-width + $topbar-padding-x);
+  position: fixed;
+  width: calc(100vw - calc($sidebar-width + $topbar-padding-x) - $topbar-padding-x);
+  z-index: 1;
+  @include breakpoint-max($bp-screen-lg) {
+    padding-left: $topbar-padding-x;
+    width: calc(100vw - calc($topbar-padding-x * 2));
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    padding-left: $topbar-padding-x-sm;
+    padding-right: $topbar-padding-x-sm;
+    width: calc(100vw - calc($topbar-padding-x-sm * 2));
+  }
+  @include print {
+    display: none;
+  }
+}
+
+.history {
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  @include breakpoint-max($bp-screen-lg) {
+    display: none;
+  }
+}
+
+.profile {
+  display: flex;
+  gap: 1.2rem;
+  height: 100%;
+  justify-content: center;
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    gap: 2.4rem;
+    justify-content: center;
+  }
+}
+
+.bell {
+  position: relative;
+  width: 2.4rem;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  > svg {
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  > p {
+    background-color: $color-brand-blue-v2-4;
+    border-radius: 50%;
+    bottom: -2rem;
+    cursor: pointer;
+    height: 1.6rem;
+    position: absolute;
+    right: -.5rem;
+    text-align: center;
+    width: 1.6rem;
+  }
+}
+
+.uniLogo {
+  border: 1px solid $color-black-200;
+  border-radius: 1.2rem;
+  height: $uniLogoH;
+  padding: .8rem 2.4rem;
+  width: $uniLogoW;
+  @include breakpoint-max($bp-screen-lg) {
+    display: none;
+  }
+
+  &__wrapper {
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.avatar {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 1.6rem;
+  justify-content: center;
+  padding-left: 1.2rem;
+  position: relative;
+  @include breakpoint-max($bp-screen-lg) {
+    padding-left: 2.4rem;
+  }
+
+  > p {
+    @include breakpoint-max($bp-screen-lg) {
+      display: none;
+    }
+  }
+
+  &__image {
+    border-radius: 50%;
+  }
+}
+
+.menuIcon {
+  &.active {
+    transform: rotate(180deg);
+  }
+}

@@ -1,0 +1,184 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.settings {
+  background-color: $color-black-000;
+  border-radius: 1.2rem;
+  display: grid;
+  grid-template-columns: .55fr 1fr;
+  height: 65vh;
+  margin-top: 4.8rem;
+  max-width: $public-pages-max-width;
+  @include breakpoint-max($bp-screen-lg) {
+    display: block;
+    height: initial;
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    margin-top: 2.4rem;
+  }
+
+  @include print {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.menu {
+  background-color: $color-black-100;
+  border-radius: 1.2rem;
+  max-width: 345px;
+  padding: 3.2rem 0;
+  @include breakpoint-max($bp-screen-lg) {
+    max-width: initial;
+    padding-bottom: 0;
+    padding-top: 1.2rem;
+    width: 100%;
+  }
+}
+
+.top {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  justify-content: center;
+  padding: 0 3.2rem;
+
+  > p {
+    text-align: center;
+  }
+}
+
+.wrapper {
+  margin-top: 3.2rem;
+  @include breakpoint-max($bp-screen-lg) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 1.2rem;
+  }
+
+  div {
+    &:first-child {
+      @include breakpoint-max($bp-screen-lg) {
+        border-radius: 0 0 0 1.2rem;
+      }
+    }
+
+    &:last-child {
+      @include breakpoint-max($bp-screen-lg) {
+        border-radius: 0 0 1.2rem 0;
+      }
+    }
+  }
+}
+
+.menuItem {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  gap: .8rem;
+  grid-template-columns: .1fr 1fr;
+  padding: 1.2rem 3.2rem;
+  transition: background-color .2s ease-in-out;
+  width: calc(100% - 6.4rem);
+
+  @include breakpoint-max($bp-screen-lg) {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    padding: 1.2rem;
+    width: calc(100% - 2.4rem);
+  }
+
+  > p {
+    @include breakpoint-max($bp-screen-lg) {
+      display: none;
+    }
+  }
+
+  > svg {
+    @include breakpoint-max($bp-screen-lg) {
+      width: 100%;
+    }
+  }
+
+  > p, path {
+    transition: color .2s ease-in-out, stroke .2s ease-in-out;
+  }
+
+  &:focus,
+  &:hover,
+  &.active {
+    background-color: $color-brand-blue-v2-4;
+
+    > p {
+      color: $color-black-000;
+    }
+
+    path {
+      stroke: $color-black-000;
+    }
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.preferences {
+  max-width: 600px;
+  padding: 3.2rem;
+  position: relative;
+  @include breakpoint-max($bp-screen-lg) {
+    height: calc(48rem - 2.4rem - 1.2rem);
+    max-width: initial;
+    padding: 2.4rem 3.2rem 1.2rem;
+    width: calc(100% - 6.4rem);
+  }
+  @include breakpoint-max($bp-screen-sm) {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    width: calc(100% - 2.4rem);
+  }
+
+  > p {
+    margin-bottom: 3.6rem;
+  }
+
+}
+
+.checkboxWrapper {
+  label {
+    font-weight: 400;
+    padding-left: 3.2rem;
+    @include text-paragraph();
+
+    > span {
+      height: 2.4rem;
+      width: 2.4rem;
+    }
+  }
+}
+
+.selectWrapper {
+  max-width: 28rem;
+
+  ul {
+    height: 16rem;
+  }
+}
+
+.buttonWrapper {
+  bottom: 4.6rem;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 50%;
+  @include breakpoint-max($bp-screen-lg) {
+    width: initial;
+  }
+
+  button {
+    margin: 3.2rem auto 0;
+  }
+}

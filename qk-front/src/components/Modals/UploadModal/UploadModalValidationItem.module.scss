@@ -1,0 +1,48 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.wrapper {
+  margin-bottom: .8rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1.2rem;
+  padding: .8rem 1.6rem;
+  border: 1px solid $color-black-300;
+
+  &.active {
+    border-radius: 1.2rem 1.2rem 0 0;
+    border-bottom: none;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.expand {
+  cursor: pointer;
+  &.active {
+    transform: rotate(180deg);
+  }
+}
+
+.data {
+  display: none;
+  border-radius: 0 0 1.2rem 1.2rem;
+  border: 1px solid $color-black-300;
+  padding: 1.6rem;
+
+  &.active {
+    display: block;
+  }
+
+  > p span {
+    color: $color-black-800;
+  }
+}

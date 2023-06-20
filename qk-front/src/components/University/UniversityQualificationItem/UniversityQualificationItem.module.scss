@@ -1,0 +1,107 @@
+@import "src/assets/styles/utils/constants";
+@import "src/assets/styles/utils/mixins";
+
+.qualification {
+  padding: 0 2.4rem;
+  border-radius: 1.5rem;
+  background-color: $color-black-000;
+  display: grid;
+  grid-template-columns: 1fr 1fr .7fr .7fr .3fr;
+  gap: 1.2rem;
+
+  @include breakpoint-max($bp-screen-md) {
+    grid-template-columns: 1fr 1fr .3fr .7fr .3fr;
+  }
+
+  &.active {
+    border-radius: 1.5rem 1.5rem 0 0;
+  }
+}
+
+.qualificationWrapper {
+  margin-bottom: 1.6rem;
+  &:not(:first-child) {
+    .item,
+    .status,
+    .date,
+    .actions, {
+      p:last-child {
+        display: none;
+      }
+    }
+  }
+}
+
+.item {
+  padding: 2.4rem 0;
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  align-items: center;
+  gap: .8rem;
+  position: relative;
+  > p {
+    max-width: 21ch;
+    &:last-child {
+      @include qualificationTitles();
+    }
+  }
+
+  &:not(:nth-child(3)) {
+    @include breakpoint-max($bp-screen-lg) {
+      grid-template-columns: 1fr;
+      svg {
+        display: none;
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    @include breakpoint-max($bp-screen-md) {
+      grid-template-columns: 1fr;
+      > p {
+        display: none;
+      }
+    }
+  }
+}
+
+.date {
+  height: calc(100% - 4.8rem);
+  align-self: center;
+  padding: 2.4rem 0;
+  position: relative;
+  justify-self: center;
+  display: grid;
+  > p:first-child {
+    max-width: 10ch;
+    text-align: center;
+    align-self: center;
+  }
+  > p:last-child {
+    min-width: 12ch;
+    @include qualificationTitles();
+  }
+}
+
+.actions {
+  position: relative;
+  padding: 1.2rem 0 1.2rem 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-left: 1px solid $color-black-200;
+  align-items: center;
+  gap: 2.4rem;
+  svg {
+    cursor: pointer;
+  }
+  > p:last-child {
+    @include qualificationTitles();
+    left: 2.4rem;
+  }
+
+  &.active {
+    div:nth-child(2) svg {
+      transform: rotate(180deg);
+    }
+  }
+}
